@@ -109,7 +109,7 @@ extern "C" {
 // inline assembly would need to be modified for use with Native Client.
 #if ((defined(__ARM_NEON__) || defined(__aarch64__)) && \
      (!defined(HAVE_CONFIG_H) || defined(WEBP_HAVE_NEON))) && \
-    !defined(__native_client__)
+    !defined(__native_client__) && !defined(__i386__) && !defined(__x86_64__)
 #define WEBP_USE_NEON
 #endif
 
