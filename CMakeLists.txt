@@ -12,6 +12,12 @@ if(POLICY CMP0072)
   cmake_policy(SET CMP0072 NEW)
 endif()
 
+include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.23.126.tar.gz"
+    SHA1 "ccaf37e820cb54d6a5c02993c7f389b9861fc38e"
+)
+
 project(WebP C)
 
 # Options for coder / decoder executables.
