@@ -103,6 +103,8 @@ set(includedir "\$\{prefix\}/include")
 set(PTHREAD_LIBS ${CMAKE_THREAD_LIBS_INIT})
 set(INSTALLED_LIBRARIES)
 
+set(INSTALLED_LIBRARIES "")
+
 # ##############################################################################
 # Android only.
 if(ANDROID)
@@ -111,6 +113,7 @@ if(ANDROID)
               ${ANDROID_NDK}/sources/android/cpufeatures/cpu-features.c)
   list(APPEND INSTALLED_LIBRARIES cpufeatures)
   target_link_libraries(cpufeatures PUBLIC dl)
+  list(APPEND INSTALLED_LIBRARIES cpufeatures)
   set(WEBP_DEP_LIBRARIES ${WEBP_DEP_LIBRARIES} cpufeatures)
   set(WEBP_DEP_INCLUDE_DIRS ${WEBP_DEP_INCLUDE_DIRS}
       ${ANDROID_NDK}/sources/android/cpufeatures)
