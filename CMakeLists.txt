@@ -110,7 +110,7 @@ if(ANDROID)
   add_library(cpufeatures STATIC
               ${ANDROID_NDK}/sources/android/cpufeatures/cpu-features.c)
   list(APPEND INSTALLED_LIBRARIES cpufeatures)
-  target_link_libraries(cpufeatures dl)
+  target_link_libraries(cpufeatures PUBLIC dl)
   set(WEBP_DEP_LIBRARIES ${WEBP_DEP_LIBRARIES} cpufeatures)
   set(WEBP_DEP_INCLUDE_DIRS ${WEBP_DEP_INCLUDE_DIRS}
       ${ANDROID_NDK}/sources/android/cpufeatures)
@@ -246,7 +246,7 @@ add_library(webpdecoder
 if(XCODE)
   libwebp_add_stub_file(webpdecoder)
 endif()
-target_link_libraries(webpdecoder ${WEBP_DEP_LIBRARIES})
+target_link_libraries(webpdecoder PUBLIC ${WEBP_DEP_LIBRARIES})
 target_include_directories(
   webpdecoder
   PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}
@@ -314,7 +314,7 @@ configure_pkg_config("src/libwebp.pc")
 
 # Build the webp demux library.
 add_library(webpdemux ${WEBP_DEMUX_SRCS})
-target_link_libraries(webpdemux webp)
+target_link_libraries(webpdemux PUBLIC webp)
 target_include_directories(webpdemux
                            PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
                                    ${CMAKE_CURRENT_BINARY_DIR}
@@ -431,13 +431,14 @@ if(WEBP_BUILD_ANIM_UTILS
   parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/imageio "IMAGEIOUTILS_SRCS"
                     "imageio_util_[^ ]*")
   add_library(imageioutil STATIC ${IMAGEIOUTILS_SRCS})
-  target_link_libraries(imageioutil webp)
+  target_link_libraries(imageioutil PUBLIC webp)
 
   # Image-decoding utility library.
   parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/imageio "IMAGEDEC_SRCS"
                     "imagedec_[^ ]*")
   add_library(imagedec STATIC ${IMAGEDEC_SRCS})
   target_link_libraries(imagedec
+                        PUBLIC
                         imageioutil
                         webpdemux
                         webp
@@ -447,7 +448,7 @@ if(WEBP_BUILD_ANIM_UTILS
   parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/imageio "IMAGEENC_SRCS"
                     "imageenc_[^ ]*")
   add_library(imageenc STATIC ${IMAGEENC_SRCS})
-  target_link_libraries(imageenc imageioutil webp)
+  target_link_libraries(imageenc PUBLIC imageioutil webp)
 
   set_property(TARGET exampleutil
                       imageioutil
@@ -478,7 +479,7 @@ endif()
 if(WEBP_BUILD_LIBWEBPMUX)
   parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/src/mux "WEBP_MUX_SRCS" "")
   add_library(libwebpmux ${WEBP_MUX_SRCS})
-  target_link_libraries(libwebpmux webp)
+  target_link_libraries(libwebpmux PUBLIC webp)
   target_include_directories(libwebpmux
                              PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
                                      ${CMAKE_CURRENT_SOURCE_DIR})
