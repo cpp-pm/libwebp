@@ -451,7 +451,7 @@ if(WEBP_BUILD_ANIM_UTILS
   parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/imageio "IMAGEENC_SRCS"
                     "imageenc_[^ ]*")
   add_library(imageenc STATIC ${IMAGEENC_SRCS})
-  target_link_libraries(imageenc PUBLIC imageioutil webp)
+  target_link_libraries(imageenc PUBLIC imageioutil webp ${WEBP_DEP_IMG_LIBRARIES})
 
   set_property(TARGET exampleutil
                       imageioutil
