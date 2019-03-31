@@ -438,6 +438,8 @@ if(WEBP_BUILD_ANIM_UTILS
   add_library(imageioutil STATIC ${IMAGEIOUTILS_SRCS})
   target_link_libraries(imageioutil PUBLIC webp)
 
+  target_link_libraries(exampleutil PUBLIC imageioutil)
+
   # Image-decoding utility library.
   parse_makefile_am(${CMAKE_CURRENT_SOURCE_DIR}/imageio "IMAGEDEC_SRCS"
                     "imagedec_[^ ]*")
