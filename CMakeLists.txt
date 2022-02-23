@@ -14,8 +14,8 @@ endif()
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.23.126.tar.gz"
-    SHA1 "ccaf37e820cb54d6a5c02993c7f389b9861fc38e"
+    URL "https://github.com/cpp-pm/hunter/archive/v0.23.322.tar.gz"
+    SHA1 "cb0ea1f74f4a2c49a807de34885743495fccccbe"
 )
 
 project(WebP C)
