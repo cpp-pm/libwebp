@@ -5,14 +5,8 @@ set(WEBP_VERSION ${WebP_VERSION})
 
 find_package(PNG CONFIG REQUIRED)
 find_package(JPEG CONFIG REQUIRED)
-if(NOT MSYS)
-  # See 'cmake/deps.cmake'
-  find_package(TIFF CONFIG REQUIRED)
-endif()
-if(NOT MINGW AND NOT MSYS)
-  # See 'cmake/deps.cmake'
-  find_package(giflib CONFIG REQUIRED)
-endif()
+find_package(TIFF CONFIG REQUIRED)
+find_package(giflib CONFIG REQUIRED)
 
 find_package(Threads)
 

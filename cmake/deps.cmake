@@ -83,31 +83,17 @@ if(HUNTER_ENABLED)
   set(WEBP_HAVE_JPEG 1)
   set(JPEG_FOUND 1)
 
-  if(MSYS)
-    # TIFF is currently not supported by Hunter on MSYS:
-    # - https://github.com/ingenue/hunter/blob/8e37b969b18ff75857d2b75c8acdf1e9caca2549/appveyor.yml#L31-L34
-    set(WEBP_HAVE_TIFF 0)
-    set(TIFF_FOUND 0)
-  else()
-    hunter_add_package(TIFF)
-    find_package(TIFF CONFIG REQUIRED)
-    list(APPEND WEBP_DEP_IMG_LIBRARIES TIFF::libtiff)
-    set(WEBP_HAVE_TIFF 1)
-    set(TIFF_FOUND 1)
-  endif()
+  hunter_add_package(TIFF)
+  find_package(TIFF CONFIG REQUIRED)
+  list(APPEND WEBP_DEP_IMG_LIBRARIES TIFF::libtiff)
+  set(WEBP_HAVE_TIFF 1)
+  set(TIFF_FOUND 1)
 
-  if(MINGW OR MSYS)
-    # giflib is currently not supported by Hunter on MinGW and MSYS:
-    # - https://github.com/ingenue/hunter/blob/ab5a2b7507427b2e1110717c35c29a78815394c6/appveyor.yml#L27-L37
-    set(WEBP_HAVE_GIF 0)
-    set(GIF_FOUND 0)
-  else()
-    hunter_add_package(giflib)
-    find_package(giflib CONFIG REQUIRED)
-    list(APPEND WEBP_DEP_GIF_LIBRARIES giflib::giflib)
-    set(WEBP_HAVE_GIF 1)
-    set(GIF_FOUND 1)
-  endif()
+  hunter_add_package(giflib)
+  find_package(giflib CONFIG REQUIRED)
+  list(APPEND WEBP_DEP_GIF_LIBRARIES giflib::giflib)
+  set(WEBP_HAVE_GIF 1)
+  set(GIF_FOUND 1)
 else()
 
 # Find the standard image libraries.
