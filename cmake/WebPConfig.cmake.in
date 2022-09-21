@@ -14,6 +14,8 @@ if(NOT MINGW AND NOT MSYS)
   find_package(giflib CONFIG REQUIRED)
 endif()
 
+find_package(Threads)
+
 check_required_components("@PROJECT_NAME@")
 
 include ("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
